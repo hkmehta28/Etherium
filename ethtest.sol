@@ -1,24 +1,24 @@
 pragma solidity >=0.6.12 <0.9.0;
 
-contract Token
+contract DigitalAsset
 {
-  string public token_name = "META";
-  string public token_abbry = "MTA";
-  uint public total_supply = 0;
+  string public asset_name = "ALPHA";
+  string public asset_symbol = "ALP";
+  uint public total_units = 0;
 
-  mapping(address => uint)public balances;
+  mapping(address => uint) public holdings;
 
-  function mint (address _address, uint _value) 
-  public{
-    total_supply += _value;
-    balances [_address] += _value;
+  function mint(address _holder, uint _amount) 
+  public {
+    total_units += _amount;
+    holdings[_holder] += _amount;
   }
 
-  function burn (address _address, uint _value) 
+  function burn(address _holder, uint _amount) 
   public {
-    if(balances[_address] >= _value) {
-      total_supply -= _value;
-      balances[_address] -= _value;
+    if(holdings[_holder] >= _amount) {
+      total_units -= _amount;
+      holdings[_holder] -= _amount;
     }
   }
 }
